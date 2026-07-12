@@ -3,7 +3,7 @@
 Single-file, Web ChatGPT-oriented skills. Every package is self-contained at:
 
 ```text
-upload-packages/<skill>/SKILL.md
+<skill>/SKILL.md
 ```
 
 Use this repository as a **remote-readable skill registry** for Web ChatGPT. The canonical machine-readable entrypoint is:
