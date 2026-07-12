@@ -1,0 +1,137 @@
+version: 1
+updated_at: "2026-07-12"
+repository: EthanSangSSS/web-chatgpt-skills
+purpose: >-
+  Machine-readable registry for Web ChatGPT-oriented single-file skills.
+  Each skill is designed to be read remotely from GitHub and executed from
+  conversation context, uploaded files, GitHub connector data, and web search
+  when available. No skill may assume local terminal, local filesystem,
+  credentials, MCP servers, or background execution unless those capabilities
+  are explicitly available in the current ChatGPT surface and verified by a
+  tool result.
+
+execution_defaults:
+  local_terminal: prohibited
+  local_filesystem: prohibited
+  background_work: prohibited
+  secrets_handling: never_request_or_store
+  evidence_rule: do_not_claim_unverified_execution
+  handoff_rule: >-
+    When a task requires local file edits, shell commands, build/test execution,
+    credentials, local services, or multi-file repository changes beyond safe
+    GitHub connector edits, stop direct execution and produce a bounded local
+    agent handoff with repo, branch, HEAD/PR metadata if available, file scope,
+    forbidden actions, validation commands, stop conditions, and final output format.
+
+skills:
+  - id: architecture-diagram
+    path: upload-packages/architecture-diagram/SKILL.md
+    status: stable
+    priority: P0
+    category: software-architecture
+    triggers: [architecture diagram, system diagram, C4, deployment diagram, data flow, trust boundary, 架构图, 系统图]
+    do_not_use_for: [decorative illustration, pure UI mockup, product purchase decision]
+
+  - id: systematic-debugging
+    path: upload-packages/systematic-debugging/SKILL.md
+    status: stable
+    priority: P0
+    category: software-debugging
+    triggers: [bug, error, crash, traceback, log analysis, startup failure, 报错, 启动失败, 崩溃]
+    do_not_use_for: [feature planning without a failure, product purchase decision]
+
+  - id: test-driven-development
+    path: upload-packages/test-driven-development/SKILL.md
+    status: stable
+    priority: P0
+    category: software-quality
+    triggers: [TDD, tests first, regression test, unit test, integration test, 测试驱动, 回归测试]
+    do_not_use_for: [post-hoc certification without evidence, pure project planning]
+
+  - id: requirement-engineering
+    path: upload-packages/requirement-engineering/SKILL.md
+    status: stable
+    priority: P1
+    category: product-management
+    triggers: [requirements, PRD, spec, acceptance criteria, 需求, 需求分析, 产品规格, 验收标准]
+    do_not_use_for: [implementation without ambiguity, code review]
+
+  - id: kanban-orchestrator
+    path: upload-packages/kanban-orchestrator/SKILL.md
+    status: stable
+    priority: P0
+    category: agent-orchestration
+    triggers: [kanban, work packages, roadmap, execution plan, Codex handoff, local agent, 看板, 任务拆解, 本地 agent]
+    do_not_use_for: [simple one-step tasks, unrelated brainstorming]
+
+  - id: customer-research
+    path: upload-packages/customer-research/SKILL.md
+    status: stable
+    priority: P1
+    category: research
+    triggers: [customer research, interviews, reviews, user feedback, JTBD, 用户研究, 客户反馈, 访谈]
+    do_not_use_for: [inventing personas without evidence, regulated advice]
+
+  - id: research-paper-writing
+    path: upload-packages/research-paper-writing/SKILL.md
+    status: beta
+    priority: P2
+    category: research-writing
+    triggers: [paper, manuscript, abstract, related work, reviewer simulation, 论文, 技术白皮书]
+    do_not_use_for: [fabricating results, citation invention]
+
+  - id: nuwa
+    path: upload-packages/nuwa/SKILL.md
+    status: stable
+    priority: P1
+    category: perspective-modeling
+    triggers: [nuwa, perspective skill, mental model, decision style, 思维方式, 名人的思维, 学派]
+    do_not_use_for: [deceptive impersonation, private motive claims, therapeutic replacement]
+
+  - id: baoyu-article-illustrator
+    path: upload-packages/baoyu-article-illustrator/SKILL.md
+    status: beta
+    priority: P2
+    category: visual-design
+    triggers: [article illustration, visual plan, image prompt, 配图, 文章插图]
+    do_not_use_for: [copying living artist style, factual charting]
+
+  - id: baoyu-comic
+    path: upload-packages/baoyu-comic/SKILL.md
+    status: beta
+    priority: P2
+    category: visual-storytelling
+    triggers: [comic, storyboard, educational comic, 漫画, 分镜, 知识漫画]
+    do_not_use_for: [unverified historical claims, copyrighted character copying]
+
+  - id: baoyu-infographic
+    path: upload-packages/baoyu-infographic/SKILL.md
+    status: stable
+    priority: P1
+    category: data-visualization
+    triggers: [infographic, visual summary, comparison graphic, timeline, 信息图, 可视化]
+    do_not_use_for: [decorative chart, unsourced statistics]
+
+  - id: content-polishing-workflow
+    path: upload-packages/content-polishing-workflow/SKILL.md
+    status: stable
+    priority: P1
+    category: writing
+    triggers: [polish, rewrite, edit, resume, interview material, 润色, 改写, 求职材料]
+    do_not_use_for: [inventing credentials, changing factual claims without evidence]
+
+  - id: skill-vetter
+    path: upload-packages/skill-vetter/SKILL.md
+    status: stable
+    priority: P0
+    category: safety-review
+    triggers: [skill review, prompt audit, agent package, workflow safety, 审核 skill, 安全审查]
+    do_not_use_for: [approving unread code, executing unknown packages]
+
+  - id: industrial-self-audit-protocol
+    path: upload-packages/industrial-self-audit-protocol/SKILL.md
+    status: stable
+    priority: P0
+    category: quality-gate
+    triggers: [final audit, quality gate, release readiness, review deliverable, 最终审核, 质量门禁, 验收]
+    do_not_use_for: [certifying uninspected work, replacing required professional compliance review]
