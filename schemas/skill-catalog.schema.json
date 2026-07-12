@@ -32,7 +32,7 @@
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "path": { "type": "string", "pattern": "^upload-packages/.+/SKILL\\.md$" },
+          "path": { "type": "string", "pattern": "^[a-z0-9-]+/SKILL\\.md$" },
           "status": { "enum": ["draft", "beta", "stable", "deprecated"] },
           "priority": { "enum": ["P0", "P1", "P2", "P3"] },
           "category": { "type": "string" },

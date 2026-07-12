@@ -25,7 +25,7 @@ execution_defaults:
 
 skills:
   - id: architecture-diagram
-    path: upload-packages/architecture-diagram/SKILL.md
+    path: architecture-diagram/SKILL.md
     status: stable
     priority: P0
     category: software-architecture
@@ -33,7 +33,7 @@ skills:
     do_not_use_for: [decorative illustration, pure UI mockup, product purchase decision]
 
   - id: systematic-debugging
-    path: upload-packages/systematic-debugging/SKILL.md
+    path: systematic-debugging/SKILL.md
     status: stable
     priority: P0
     category: software-debugging
@@ -41,7 +41,7 @@ skills:
     do_not_use_for: [feature planning without a failure, product purchase decision]
 
   - id: test-driven-development
-    path: upload-packages/test-driven-development/SKILL.md
+    path: test-driven-development/SKILL.md
     status: stable
     priority: P0
     category: software-quality
@@ -49,7 +49,7 @@ skills:
     do_not_use_for: [post-hoc certification without evidence, pure project planning]
 
   - id: requirement-engineering
-    path: upload-packages/requirement-engineering/SKILL.md
+    path: requirement-engineering/SKILL.md
     status: stable
     priority: P1
     category: product-management
@@ -57,7 +57,7 @@ skills:
     do_not_use_for: [implementation without ambiguity, code review]
 
   - id: kanban-orchestrator
-    path: upload-packages/kanban-orchestrator/SKILL.md
+    path: kanban-orchestrator/SKILL.md
     status: stable
     priority: P0
     category: agent-orchestration
@@ -65,7 +65,7 @@ skills:
     do_not_use_for: [simple one-step tasks, unrelated brainstorming]
 
   - id: grill-me
-    path: upload-packages/grill-me/SKILL.md
+    path: grill-me/SKILL.md
     status: stable
     priority: P0
     category: adversarial-review
@@ -73,7 +73,7 @@ skills:
     do_not_use_for: [performing the task being discussed, code execution, debugging reproduction, final certification without evidence, hostile personal criticism]
 
   - id: customer-research
-    path: upload-packages/customer-research/SKILL.md
+    path: customer-research/SKILL.md
     status: stable
     priority: P1
     category: research
@@ -81,7 +81,7 @@ skills:
     do_not_use_for: [inventing personas without evidence, regulated advice]
 
   - id: research-paper-writing
-    path: upload-packages/research-paper-writing/SKILL.md
+    path: research-paper-writing/SKILL.md
     status: beta
     priority: P2
     category: research-writing
@@ -89,7 +89,7 @@ skills:
     do_not_use_for: [fabricating results, citation invention]
 
   - id: nuwa
-    path: upload-packages/nuwa/SKILL.md
+    path: nuwa/SKILL.md
     status: stable
     priority: P1
     category: perspective-modeling
@@ -97,7 +97,7 @@ skills:
     do_not_use_for: [deceptive impersonation, private motive claims, therapeutic replacement]
 
   - id: baoyu-article-illustrator
-    path: upload-packages/baoyu-article-illustrator/SKILL.md
+    path: baoyu-article-illustrator/SKILL.md
     status: beta
     priority: P2
     category: visual-design
@@ -105,7 +105,7 @@ skills:
     do_not_use_for: [copying living artist style, factual charting]
 
   - id: baoyu-comic
-    path: upload-packages/baoyu-comic/SKILL.md
+    path: baoyu-comic/SKILL.md
     status: beta
     priority: P2
     category: visual-storytelling
@@ -113,7 +113,7 @@ skills:
     do_not_use_for: [unverified historical claims, copyrighted character copying]
 
   - id: baoyu-infographic
-    path: upload-packages/baoyu-infographic/SKILL.md
+    path: baoyu-infographic/SKILL.md
     status: stable
     priority: P1
     category: data-visualization
@@ -121,7 +121,7 @@ skills:
     do_not_use_for: [decorative chart, unsourced statistics]
 
   - id: content-polishing-workflow
-    path: upload-packages/content-polishing-workflow/SKILL.md
+    path: content-polishing-workflow/SKILL.md
     status: stable
     priority: P1
     category: writing
@@ -129,7 +129,7 @@ skills:
     do_not_use_for: [inventing credentials, changing factual claims without evidence]
 
   - id: skill-vetter
-    path: upload-packages/skill-vetter/SKILL.md
+    path: skill-vetter/SKILL.md
     status: stable
     priority: P0
     category: safety-review
@@ -137,7 +137,7 @@ skills:
     do_not_use_for: [approving unread code, executing unknown packages]
 
   - id: industrial-self-audit-protocol
-    path: upload-packages/industrial-self-audit-protocol/SKILL.md
+    path: industrial-self-audit-protocol/SKILL.md
     status: stable
     priority: P0
     category: quality-gate
