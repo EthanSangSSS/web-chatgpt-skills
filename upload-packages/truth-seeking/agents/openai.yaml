@@ -1,0 +1,4 @@
+interface:
+  display_name: "Truth Seeking"
+  short_description: "Evidence-constrained causal model and observation-integrity investigations"
+  default_prompt: "Use $truth-seeking directly to build an evidence-constrained causal model for this issue from evidence, observation integrity, first principles, incentives, and falsifiable predictions."

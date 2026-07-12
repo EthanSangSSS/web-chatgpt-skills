@@ -1,0 +1,7 @@
+interface:
+  display_name: "Rational Product Evaluation"
+  short_description: "Evaluate purchases by fit, timing, evidence, and TCO"
+  default_prompt: "Use $rational-product-evaluation to decide whether this product is worth buying now, including fit, evidence quality, alternatives, and timing."
+
+policy:
+  allow_implicit_invocation: true

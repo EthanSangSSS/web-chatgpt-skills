@@ -2,7 +2,9 @@ version: 1
 updated_at: "2026-07-12"
 repository: EthanSangSSS/web-chatgpt-skills
 purpose: >-
-  Machine-readable registry for Web ChatGPT-oriented single-file skills.
+  Machine-readable registry for Web ChatGPT-oriented skills. Some are
+  single-file skills while complete portable packages live under
+  upload-packages/<skill>/.
   Each skill is designed to be read remotely from GitHub and executed from
   conversation context, uploaded files, GitHub connector data, and web search
   when available. No skill may assume local terminal, local filesystem,
@@ -143,3 +145,19 @@ skills:
     category: quality-gate
     triggers: [final audit, quality gate, release readiness, review deliverable, 最终审核, 质量门禁, 验收]
     do_not_use_for: [certifying uninspected work, replacing required professional compliance review]
+
+  - id: truth-seeking
+    path: upload-packages/truth-seeking/SKILL.md
+    status: stable
+    priority: P0
+    category: causal-investigation
+    triggers: [truth seeking, root cause, first principles, incentive map, observation integrity, 真相挖掘, 根因分析, 利益链]
+    do_not_use_for: [simple factual lookup, source-only discovery, regulated professional advice]
+
+  - id: rational-product-evaluation
+    path: upload-packages/rational-product-evaluation/SKILL.md
+    status: stable
+    priority: P1
+    category: consumer-decision
+    triggers: [product evaluation, purchase decision, compare products, total cost of ownership, 值不值得买, 产品评估, 购买建议]
+    do_not_use_for: [regulated professional advice, B2B procurement, pure technical troubleshooting]

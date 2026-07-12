@@ -1,10 +1,18 @@
 # Web ChatGPT Skills
 
-Single-file, Web ChatGPT-oriented skills. Every package is self-contained at:
+Web ChatGPT-oriented skills. Some packages are single-file skills at:
 
 ```text
 <skill>/SKILL.md
 ```
+
+Complete portable packages live under:
+
+```text
+upload-packages/<skill>/
+```
+
+Upload `SKILL.md` to ChatGPT when using the Web ChatGPT single-file skill surface. For Codex or local-agent usage, sync the full package directory so its references, templates, tests, examples, metadata, and validation assets remain available.
 
 Use this repository as a **remote-readable skill registry** for Web ChatGPT. The canonical machine-readable entrypoint is:
 
@@ -50,6 +58,8 @@ Do not claim local execution or test pass without tool evidence.
 - `customer-research` — synthesizes interviews, feedback, reviews, and web evidence into decision-ready insight.
 - `research-paper-writing` — plans and reviews technical research manuscripts without fabricating claims, results, or citations.
 - `nuwa` — builds evidence-bounded perspective skills without deceptive impersonation.
+- `truth-seeking` — evidence-constrained causal investigation, source policy, observation integrity, and adversarial validation fixtures.
+- `rational-product-evaluation` — consumer purchase evaluation by fit, timing, evidence quality, alternatives, and TCO.
 
 ## Visual and creative design
 
