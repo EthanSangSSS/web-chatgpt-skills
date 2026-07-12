@@ -39,10 +39,11 @@ Do not claim local execution or test pass without tool evidence.
 - `systematic-debugging` — evidence-led debugging with symptom ledgers, competing hypotheses, discriminating tests, and handoff rules.
 - `test-driven-development` — test design and RED-GREEN-REFACTOR with user-supplied test evidence.
 
-## Product and project management
+## Product, planning, and project management
 
 - `requirement-engineering` — turns ambiguity into testable requirements with explicit acceptance evidence.
 - `kanban-orchestrator` — decomposes an outcome into dependency-aware work packages, validation gates, and local-agent handoff cards.
+- `grill-me` — adversarially stress-tests plans, specs, tickets, handoffs, and decisions with ambiguity scoring before execution.
 
 ## Research and perspective modeling
 
