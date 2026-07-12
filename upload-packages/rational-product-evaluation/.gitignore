@@ -1,0 +1,19 @@
+.DS_Store
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Local environment and secrets
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Editor and local tool state
+.idea/
+.vscode/
+.codex/
+.agents/

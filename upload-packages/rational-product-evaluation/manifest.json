@@ -1,0 +1,7 @@
+{
+  "name": "rational-product-evaluation",
+  "description": "A Codex skill for rational consumer product evaluation, source-aware research, market-regime analysis, and purchase timing decisions.",
+  "version": "1.4",
+  "entrypoint": "SKILL.md",
+  "license": "MIT"
+}
