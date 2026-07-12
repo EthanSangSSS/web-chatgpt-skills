@@ -64,6 +64,14 @@ skills:
     triggers: [kanban, work packages, roadmap, execution plan, Codex handoff, local agent, 看板, 任务拆解, 本地 agent]
     do_not_use_for: [simple one-step tasks, unrelated brainstorming]
 
+  - id: grill-me
+    path: upload-packages/grill-me/SKILL.md
+    status: stable
+    priority: P0
+    category: adversarial-review
+    triggers: [grill me, stress test, poke holes, red team, adversarial review, am I missing anything, 反方审查, 拷问方案, 压力测试, 挑刺]
+    do_not_use_for: [performing the task being discussed, code execution, debugging reproduction, final certification without evidence, hostile personal criticism]
+
   - id: customer-research
     path: upload-packages/customer-research/SKILL.md
     status: stable
