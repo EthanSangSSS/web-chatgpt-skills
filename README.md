@@ -111,7 +111,7 @@ The validator checks that:
 - `CATALOG.yaml` declares this repository;
 - the unverified-execution evidence rule remains present;
 - each catalog skill has a unique id and a canonical `<skill>/SKILL.md` path;
-- deprecated `upload-packages/` paths are absent;
+- deprecated package-layer paths are absent;
 - referenced skill files are non-empty and look like readable Markdown skill files.
 
 GitHub Actions runs the same check on pushes to `main` and pull requests.
