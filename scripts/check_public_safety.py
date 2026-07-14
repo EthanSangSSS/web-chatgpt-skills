@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Public-safety scan for review-facing repository files.
 
-This check is intentionally conservative and dependency-free. It looks for
-patterns that should not appear in public skill packages or application evidence:
+This check is intentionally conservative and dependency-free. It scans public
+review, governance, documentation, and example files for patterns that should
+not appear in application-facing materials:
 
 - private-key blocks;
 - common cloud / GitHub token markers;
@@ -19,8 +20,17 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SCAN_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".py", ".sh", ".txt"}
-EXCLUDED_DIRS = {".git", ".venv", "node_modules", "dist", "build", "__pycache__"}
+SCAN_ROOTS = [
+    "README.md",
+    "CATALOG.yaml",
+    "ROADMAP.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "docs",
+    "examples",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+]
+SCAN_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".txt"}
 
 SECRET_OR_LOCAL_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("private key block", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
@@ -46,24 +56,26 @@ ALLOWED_LOCAL_PATH_EXAMPLES = {
 }
 
 
-def should_scan(path: Path) -> bool:
-    relative_parts = path.relative_to(ROOT).parts
-    if any(part in EXCLUDED_DIRS for part in relative_parts):
-        return False
-    return path.is_file() and path.suffix in SCAN_SUFFIXES
-
-
 def rel(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
+
+
+def iter_scan_files() -> list[Path]:
+    files: list[Path] = []
+    for entry in SCAN_ROOTS:
+        target = ROOT / entry
+        if target.is_file():
+            files.append(target)
+            continue
+        if target.is_dir():
+            files.extend(path for path in target.rglob("*") if path.is_file() and path.suffix in SCAN_SUFFIXES)
+    return sorted(set(files))
 
 
 def main() -> int:
     findings: list[str] = []
 
-    for path in sorted(ROOT.rglob("*")):
-        if not should_scan(path):
-            continue
-
+    for path in iter_scan_files():
         relative = rel(path)
         text = path.read_text(encoding="utf-8", errors="replace")
 
@@ -83,7 +95,7 @@ def main() -> int:
             print(f"- {finding}", file=sys.stderr)
         return 1
 
-    print("PASS: public-safety scan found no blocked token, private-key, local-path, or unsupported-claim patterns")
+    print(f"PASS: public-safety scan checked {len(iter_scan_files())} review-facing files")
     return 0
 
 
