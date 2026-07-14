@@ -2,15 +2,13 @@ version: 1
 updated_at: "2026-07-14"
 repository: EthanSangSSS/web-chatgpt-skills
 purpose: >-
-  Machine-readable registry for Web ChatGPT-oriented skills. Some are
-  single-file skills while complete portable packages live under
-  upload-packages/<skill>/.
-  Each skill is designed to be read remotely from GitHub and executed from
-  conversation context, uploaded files, GitHub connector data, and web search
-  when available. No skill may assume local terminal, local filesystem,
-  credentials, MCP servers, or background execution unless those capabilities
-  are explicitly available in the current ChatGPT surface and verified by a
-  tool result.
+  Machine-readable registry for Web ChatGPT-oriented skills. Every package is
+  self-contained at <skill>/SKILL.md and designed to be read remotely from
+  GitHub and executed from conversation context, uploaded files, GitHub connector
+  data, and web search when available. No skill may assume local terminal, local
+  filesystem, credentials, MCP servers, or background execution unless those
+  capabilities are explicitly available in the current ChatGPT surface and
+  verified by a tool result.
 
 maintenance:
   primary_entrypoint: CATALOG.yaml
@@ -158,7 +156,7 @@ skills:
     do_not_use_for: [certifying uninspected work, replacing required professional compliance review]
 
   - id: truth-seeking
-    path: upload-packages/truth-seeking/SKILL.md
+    path: truth-seeking/SKILL.md
     status: stable
     priority: P0
     category: causal-investigation
@@ -166,7 +164,7 @@ skills:
     do_not_use_for: [simple factual lookup, source-only discovery, regulated professional advice]
 
   - id: rational-product-evaluation
-    path: upload-packages/rational-product-evaluation/SKILL.md
+    path: rational-product-evaluation/SKILL.md
     status: stable
     priority: P1
     category: consumer-decision
