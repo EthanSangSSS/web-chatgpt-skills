@@ -9,6 +9,7 @@ Python environment. It validates the conventions this repository depends on:
 - Each referenced skill path exists.
 - Each referenced skill file contains a visible skill title / content.
 - README and governance files required for public OSS review exist.
+- Deprecated upload-packages paths are rejected.
 """
 
 from __future__ import annotations
@@ -29,6 +30,13 @@ REQUIRED_FILES = [
     "docs/MAINTAINER_RUNBOOK.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
 ]
+NO_UPLOAD_PACKAGE_REFERENCES = [
+    "README.md",
+    "CATALOG.yaml",
+    "schemas/skill-catalog.schema.json",
+    "tools/sync-local-codex-skills.sh",
+]
+CANONICAL_SKILL_PATH = re.compile(r"^[a-z0-9-]+/SKILL\.md$")
 
 
 def fail(message: str) -> None:
@@ -67,6 +75,14 @@ def main() -> int:
         if not (ROOT / relative).is_file():
             fail(f"required public-review file missing: {relative}")
 
+    if (ROOT / "upload-packages").exists():
+        fail("deprecated directory exists: upload-packages")
+
+    for relative in NO_UPLOAD_PACKAGE_REFERENCES:
+        body = read(ROOT / relative)
+        if "upload-packages" in body:
+            fail(f"deprecated upload-packages reference found in {relative}")
+
     catalog_text = read(CATALOG)
 
     if "repository: EthanSangSSS/web-chatgpt-skills" not in catalog_text:
@@ -87,6 +103,12 @@ def main() -> int:
         if skill_id in seen_ids:
             fail(f"duplicate skill id: {skill_id}")
         seen_ids.add(skill_id)
+
+        if skill_path.startswith("upload-packages/"):
+            fail(f"deprecated upload-packages path is forbidden: {skill_id}: {skill_path}")
+
+        if not CANONICAL_SKILL_PATH.fullmatch(skill_path):
+            fail(f"non-canonical skill path: {skill_id}: {skill_path}")
 
         target = ROOT / skill_path
         if not target.is_file():

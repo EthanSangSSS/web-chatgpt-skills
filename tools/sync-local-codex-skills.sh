@@ -2,8 +2,8 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-truth_source="$repo_root/upload-packages/truth-seeking"
-rational_source="$repo_root/upload-packages/rational-product-evaluation"
+truth_source="$repo_root/truth-seeking"
+rational_source="$repo_root/rational-product-evaluation"
 codex_root="$HOME/.codex/skills"
 
 for package_source in "$truth_source" "$rational_source"; do

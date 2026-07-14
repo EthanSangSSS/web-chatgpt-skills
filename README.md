@@ -47,8 +47,7 @@ Every skill in this repository follows these defaults:
 
 ```text
 CATALOG.yaml                         Machine-readable skill registry
-<skill>/SKILL.md                     Single-file Web ChatGPT skills
-upload-packages/<skill>/             Complete portable packages for Codex/local agents
+<skill>/SKILL.md                     Canonical self-contained skill package entrypoint
 docs/                                Reviewer evidence, maintainer SOP, project documentation
 scripts/                             Lightweight validation scripts
 .github/workflows/                   CI validation
@@ -111,7 +110,8 @@ The validator checks that:
 - required public-review files exist;
 - `CATALOG.yaml` declares this repository;
 - the unverified-execution evidence rule remains present;
-- each catalog skill has a unique id and an existing `SKILL.md` path;
+- each catalog skill has a unique id and a canonical `<skill>/SKILL.md` path;
+- deprecated `upload-packages/` paths are absent;
 - referenced skill files are non-empty and look like readable Markdown skill files.
 
 GitHub Actions runs the same check on pushes to `main` and pull requests.
