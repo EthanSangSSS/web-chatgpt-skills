@@ -33,11 +33,12 @@ SECRET_OR_LOCAL_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
 ]
 
 # These patterns target assertive claims. They intentionally do not flag
-# conservative phrases such as "not claimed" or "no unverified adoption claims".
+# conservative phrases such as "not claimed", "does not claim", or
+# "no unverified adoption claims".
 UNSUPPORTED_ASSERTIVE_CLAIMS: list[tuple[str, re.Pattern[str]]] = [
     ("large user-base claim", re.compile(r"\b(we|this project|the project)\s+(has|serves|supports)\s+(thousands|millions)\s+of\s+users\b", re.I)),
     ("production adoption claim", re.compile(r"\b(we|this project|the project)\s+(has|shows|demonstrates)\s+production\s+adoption\b", re.I)),
-    ("official endorsement claim", re.compile(r"\b(openai[- ]endorsed|official\s+openai\s+(project|repo|repository|skill))\b", re.I)),
+    ("endorsement claim", re.compile(r"\b(we are|this project is|the project is)\s+(openai[- ]endorsed|an?\s+official\s+openai\s+(project|repo|repository|skill))\b", re.I)),
 ]
 
 ALLOWED_LOCAL_PATH_EXAMPLES = {
