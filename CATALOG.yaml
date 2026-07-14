@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-07-12"
+updated_at: "2026-07-14"
 repository: EthanSangSSS/web-chatgpt-skills
 purpose: >-
   Machine-readable registry for Web ChatGPT-oriented skills. Some are
@@ -11,6 +11,17 @@ purpose: >-
   credentials, MCP servers, or background execution unless those capabilities
   are explicitly available in the current ChatGPT surface and verified by a
   tool result.
+
+maintenance:
+  primary_entrypoint: CATALOG.yaml
+  reviewer_fast_path: docs/CODEX_FOR_OSS_APPLICATION.md
+  maintainer_runbook: docs/MAINTAINER_RUNBOOK.md
+  validation_command: python3 scripts/validate_catalog.py
+  license: MIT
+  public_review_policy: >-
+    Public-facing claims should be evidence-bounded. Do not claim stars,
+    downloads, production adoption, local execution, test results, or security
+    review results unless verified evidence exists.
 
 execution_defaults:
   local_terminal: prohibited
