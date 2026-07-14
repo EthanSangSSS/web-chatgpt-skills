@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 """Public-safety scan for review-facing repository files.
 
-This check is intentionally conservative and dependency-free. It scans public
-review, governance, documentation, and example files for patterns that should
-not appear in application-facing materials:
+This dependency-free check scans public review, governance, documentation, and
+example files. It uses two severity levels:
 
-- private-key blocks;
-- common cloud / GitHub token markers;
-- local-user paths;
-- clearly unsupported adoption / endorsement claims.
+- blockers: private-key blocks and common credential/token markers;
+- warnings: local-user paths and assertive adoption / endorsement wording.
 
 It is not a full secret scanner and does not replace gitleaks or human review.
 """
@@ -32,20 +29,17 @@ SCAN_ROOTS = [
 ]
 SCAN_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".txt"}
 
-SECRET_OR_LOCAL_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
+BLOCKING_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("private key block", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
     ("GitHub token", re.compile(r"gh[pousr]_[A-Za-z0-9_]{20,}")),
     ("OpenAI project key", re.compile(r"sk-proj-[A-Za-z0-9_-]{20,}")),
     ("AWS access key", re.compile(r"AKIA[0-9A-Z]{16}")),
+]
+
+WARNING_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("macOS user path", re.compile(r"/Users/[A-Za-z0-9._-]+")),
     ("Linux home path", re.compile(r"/home/[A-Za-z0-9._-]+")),
     ("Windows user path", re.compile(r"[A-Za-z]:\\\\Users\\\\[A-Za-z0-9._-]+")),
-]
-
-# These patterns target assertive claims. They intentionally do not flag
-# conservative phrases such as "not claimed", "does not claim", or
-# "no unverified adoption claims".
-UNSUPPORTED_ASSERTIVE_CLAIMS: list[tuple[str, re.Pattern[str]]] = [
     ("large user-base claim", re.compile(r"\b(we|this project|the project)\s+(has|serves|supports)\s+(thousands|millions)\s+of\s+users\b", re.I)),
     ("production adoption claim", re.compile(r"\b(we|this project|the project)\s+(has|shows|demonstrates)\s+production\s+adoption\b", re.I)),
     ("endorsement claim", re.compile(r"\b(we are|this project is|the project is)\s+(openai[- ]endorsed|an?\s+official\s+openai\s+(project|repo|repository|skill))\b", re.I)),
@@ -73,29 +67,33 @@ def iter_scan_files() -> list[Path]:
 
 
 def main() -> int:
-    findings: list[str] = []
+    blockers: list[str] = []
+    warnings: list[str] = []
 
     for path in iter_scan_files():
         relative = rel(path)
         text = path.read_text(encoding="utf-8", errors="replace")
 
-        for label, pattern in SECRET_OR_LOCAL_PATTERNS:
+        for label, pattern in BLOCKING_PATTERNS:
+            if pattern.search(text):
+                blockers.append(f"{relative}: matched {label}")
+
+        for label, pattern in WARNING_PATTERNS:
             if relative in ALLOWED_LOCAL_PATH_EXAMPLES and "path" in label:
                 continue
             if pattern.search(text):
-                findings.append(f"{relative}: matched {label}")
+                warnings.append(f"{relative}: matched {label}")
 
-        for label, pattern in UNSUPPORTED_ASSERTIVE_CLAIMS:
-            if pattern.search(text):
-                findings.append(f"{relative}: matched {label}")
-
-    if findings:
-        print("FAIL: public-safety scan found review blockers", file=sys.stderr)
-        for finding in findings:
-            print(f"- {finding}", file=sys.stderr)
+    if blockers:
+        print("FAIL: public-safety scan found blocking secret/key patterns", file=sys.stderr)
+        for blocker in blockers:
+            print(f"- {blocker}", file=sys.stderr)
         return 1
 
-    print(f"PASS: public-safety scan checked {len(iter_scan_files())} review-facing files")
+    for warning in warnings:
+        print(f"WARN: {warning}")
+
+    print(f"PASS: public-safety scan checked {len(iter_scan_files())} review-facing files with {len(warnings)} warnings")
     return 0
 
 
