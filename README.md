@@ -16,14 +16,19 @@ Start here if you are evaluating the project as an OSS repository or OpenAI Code
 - [`docs/CODEX_FOR_OSS_APPLICATION.md`](docs/CODEX_FOR_OSS_APPLICATION.md) — evidence packet and application wording.
 - [`ROADMAP.md`](ROADMAP.md) — staged OSS maintenance plan.
 - [`docs/SECURITY_THREAT_MODEL.md`](docs/SECURITY_THREAT_MODEL.md) — instruction-level security model for AI-agent skills.
+- [`docs/PROMPT_SECURITY_REVIEW.md`](docs/PROMPT_SECURITY_REVIEW.md) — reviewer checklist for prompt-injection and unsafe tool-use patterns.
 - [`docs/RELEASE_CHECKLIST.md`](docs/RELEASE_CHECKLIST.md) — release-readiness checklist and `v0.1.0` candidate scope.
+- [`docs/releases/v0.1.0.md`](docs/releases/v0.1.0.md) — prepared first public release notes and `gh release create` command.
 - [`docs/MAINTAINER_RUNBOOK.md`](docs/MAINTAINER_RUNBOOK.md) — maintainer SOP for triage, review, validation, and local-agent handoff.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution rules and skill quality checklist.
 - [`SECURITY.md`](SECURITY.md) — security scope and reporting policy.
 - [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) — PR checklist for maintenance evidence and safety boundaries.
 - [`scripts/validate_catalog.py`](scripts/validate_catalog.py) — dependency-free catalog and public-review file validator.
 - [`scripts/check_public_safety.py`](scripts/check_public_safety.py) — dependency-free scan that blocks credential/private-key markers and reports local-path or unsupported-claim wording as review warnings.
-- [`examples/`](examples/) — public-safe examples for GitHub Reality Audit, bounded handoff, and unsafe-claim review.
+- [`scripts/check_unsafe_claims.py`](scripts/check_unsafe_claims.py) — regression check for unsupported execution and validation claims.
+- [`scripts/list_changed_skills.py`](scripts/list_changed_skills.py) — reviewer aid that lists changed skill entrypoints.
+- [`examples/`](examples/) — public-safe examples for GitHub Reality Audit, bounded handoff, unsafe-claim review, architecture diagrams, TDD, and systematic debugging.
+- [`tests/fixtures/unsafe-claims/`](tests/fixtures/unsafe-claims/) — PASS / FAIL fixtures for validation-claim discipline.
 
 ## Why this exists
 
@@ -57,6 +62,7 @@ ROADMAP.md                           Staged OSS maintenance plan
 docs/                                Reviewer evidence, threat model, release checklist, maintainer SOP
 examples/                            Public-safe usage and review examples
 scripts/                             Lightweight validation scripts
+tests/fixtures/unsafe-claims/        Validation-claim regression fixtures
 .github/workflows/                   CI validation
 .github/PULL_REQUEST_TEMPLATE.md     PR safety and maintenance checklist
 ```
@@ -111,6 +117,8 @@ Run the public-review validators:
 ```bash
 python3 scripts/validate_catalog.py
 python3 scripts/check_public_safety.py
+python3 scripts/check_unsafe_claims.py
+python3 scripts/list_changed_skills.py
 ```
 
 The validators check that:
@@ -122,7 +130,9 @@ The validators check that:
 - deprecated package-layer paths are absent;
 - referenced skill files are non-empty and look like readable Markdown skill files;
 - credential, private-key, and token markers are absent from review-facing files;
-- local-path and unsupported-claim patterns are surfaced as review warnings.
+- local-path and unsupported-claim patterns are surfaced as review warnings;
+- unsafe execution and validation claim fixtures behave as expected;
+- changed skill entrypoints are listed for reviewer attention.
 
 GitHub Actions runs the same checks on pushes to `main` and pull requests.
 
@@ -131,7 +141,7 @@ GitHub Actions runs the same checks on pushes to `main` and pull requests.
 This is an early-stage public project. It should not be evaluated on unverified stars, downloads, or external adoption claims. Its application case is based on:
 
 - ecosystem importance: reusable public rules for safer AI-agent maintenance;
-- active maintenance evidence: catalog updates, PR checklist, governance files, validation scripts, CI workflow, maintainer runbook, roadmap, threat model, release checklist, and public-safe examples;
+- active maintenance evidence: catalog updates, PR checklist, governance files, validation scripts, CI workflow, maintainer runbook, roadmap, threat model, release checklist, prompt-security review, release notes, regression fixtures, and public-safe examples;
 - Codex fit: PR review, issue triage, catalog validation, release-readiness checks, and skill safety review are exactly the type of recurring OSS maintainer work Codex can reduce.
 
 See [`docs/CODEX_FOR_OSS_APPLICATION.md`](docs/CODEX_FOR_OSS_APPLICATION.md) for the application evidence packet and 500-character form drafts.
@@ -142,7 +152,7 @@ Contributions are welcome when they improve skill correctness, safety, validatio
 
 ## Security
 
-Do not disclose secrets or private data in issues or pull requests. See [`SECURITY.md`](SECURITY.md) and [`docs/SECURITY_THREAT_MODEL.md`](docs/SECURITY_THREAT_MODEL.md).
+Do not disclose secrets or private data in issues or pull requests. See [`SECURITY.md`](SECURITY.md), [`docs/SECURITY_THREAT_MODEL.md`](docs/SECURITY_THREAT_MODEL.md), and [`docs/PROMPT_SECURITY_REVIEW.md`](docs/PROMPT_SECURITY_REVIEW.md).
 
 ## License
 
