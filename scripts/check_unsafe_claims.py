@@ -31,6 +31,20 @@ EVIDENCE_PATTERNS = [
 ]
 
 
+def markdown_section(text: str, heading: str) -> str:
+    marker = f"## {heading}"
+    start = text.find(marker)
+    if start == -1:
+        return ""
+    start = text.find("\n", start)
+    if start == -1:
+        return ""
+    next_heading = text.find("\n## ", start + 1)
+    if next_heading == -1:
+        next_heading = len(text)
+    return text[start:next_heading].strip()
+
+
 def expected_result(path: Path, text: str) -> str:
     if "Expected validator result\n\n`PASS`" in text:
         return "PASS"
@@ -39,9 +53,19 @@ def expected_result(path: Path, text: str) -> str:
     raise ValueError(f"fixture missing expected result marker: {path}")
 
 
+def has_positive_evidence(evidence: str) -> bool:
+    normalized = evidence.strip().lower()
+    if not normalized or normalized.startswith("no "):
+        return False
+    return any(pattern.search(evidence) for pattern in EVIDENCE_PATTERNS)
+
+
 def classify(text: str) -> str:
-    has_unsupported_claim = any(pattern.search(text) for _, pattern in UNSUPPORTED_CLAIM_PATTERNS)
-    has_evidence = any(pattern.search(text) for pattern in EVIDENCE_PATTERNS)
+    claim = markdown_section(text, "User-visible claim") or text
+    evidence = markdown_section(text, "Evidence")
+
+    has_unsupported_claim = any(pattern.search(claim) for _, pattern in UNSUPPORTED_CLAIM_PATTERNS)
+    has_evidence = has_positive_evidence(evidence)
 
     if has_unsupported_claim and not has_evidence:
         return "FAIL"
