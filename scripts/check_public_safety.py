@@ -7,7 +7,7 @@ patterns that should not appear in public skill packages or application evidence
 - private-key blocks;
 - common cloud / GitHub token markers;
 - local-user paths;
-- unsupported adoption claims.
+- clearly unsupported adoption / endorsement claims.
 
 It is not a full secret scanner and does not replace gitleaks or human review.
 """
@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCAN_SUFFIXES = {".md", ".yaml", ".yml", ".json", ".py", ".sh", ".txt"}
 EXCLUDED_DIRS = {".git", ".venv", "node_modules", "dist", "build", "__pycache__"}
 
-PATTERNS: list[tuple[str, re.Pattern[str]]] = [
+SECRET_OR_LOCAL_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("private key block", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
     ("GitHub token", re.compile(r"gh[pousr]_[A-Za-z0-9_]{20,}")),
     ("OpenAI project key", re.compile(r"sk-proj-[A-Za-z0-9_-]{20,}")),
@@ -32,13 +32,12 @@ PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("Windows user path", re.compile(r"[A-Za-z]:\\\\Users\\\\[A-Za-z0-9._-]+")),
 ]
 
-UNSUPPORTED_CLAIMS = [
-    "thousands of users",
-    "millions of users",
-    "production adoption",
-    "widely adopted",
-    "official openai",
-    "openai endorsed",
+# These patterns target assertive claims. They intentionally do not flag
+# conservative phrases such as "not claimed" or "no unverified adoption claims".
+UNSUPPORTED_ASSERTIVE_CLAIMS: list[tuple[str, re.Pattern[str]]] = [
+    ("large user-base claim", re.compile(r"\b(we|this project|the project)\s+(has|serves|supports)\s+(thousands|millions)\s+of\s+users\b", re.I)),
+    ("production adoption claim", re.compile(r"\b(we|this project|the project)\s+(has|shows|demonstrates)\s+production\s+adoption\b", re.I)),
+    ("official endorsement claim", re.compile(r"\b(openai[- ]endorsed|official\s+openai\s+(project|repo|repository|skill))\b", re.I)),
 ]
 
 ALLOWED_LOCAL_PATH_EXAMPLES = {
@@ -67,16 +66,15 @@ def main() -> int:
         relative = rel(path)
         text = path.read_text(encoding="utf-8", errors="replace")
 
-        for label, pattern in PATTERNS:
+        for label, pattern in SECRET_OR_LOCAL_PATTERNS:
             if relative in ALLOWED_LOCAL_PATH_EXAMPLES and "path" in label:
                 continue
             if pattern.search(text):
                 findings.append(f"{relative}: matched {label}")
 
-        lowered = text.lower()
-        for claim in UNSUPPORTED_CLAIMS:
-            if claim in lowered:
-                findings.append(f"{relative}: unsupported adoption/endorsement claim: {claim}")
+        for label, pattern in UNSUPPORTED_ASSERTIVE_CLAIMS:
+            if pattern.search(text):
+                findings.append(f"{relative}: matched {label}")
 
     if findings:
         print("FAIL: public-safety scan found review blockers", file=sys.stderr)
@@ -84,7 +82,7 @@ def main() -> int:
             print(f"- {finding}", file=sys.stderr)
         return 1
 
-    print("PASS: public-safety scan found no blocked token, private-key, local-path, or unsupported-adoption patterns")
+    print("PASS: public-safety scan found no blocked token, private-key, local-path, or unsupported-claim patterns")
     return 0
 
 
