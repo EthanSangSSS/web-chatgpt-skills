@@ -22,7 +22,7 @@ Start here if you are evaluating the project as an OSS repository or OpenAI Code
 - [`SECURITY.md`](SECURITY.md) — security scope and reporting policy.
 - [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) — PR checklist for maintenance evidence and safety boundaries.
 - [`scripts/validate_catalog.py`](scripts/validate_catalog.py) — dependency-free catalog and public-review file validator.
-- [`scripts/check_public_safety.py`](scripts/check_public_safety.py) — dependency-free scan for blocked token, local-path, private-key, and unsupported-claim patterns.
+- [`scripts/check_public_safety.py`](scripts/check_public_safety.py) — dependency-free scan that blocks credential/private-key markers and reports local-path or unsupported-claim wording as review warnings.
 - [`examples/`](examples/) — public-safe examples for GitHub Reality Audit, bounded handoff, and unsafe-claim review.
 
 ## Why this exists
@@ -121,7 +121,8 @@ The validators check that:
 - each catalog skill has a unique id and a canonical `<skill>/SKILL.md` path;
 - deprecated package-layer paths are absent;
 - referenced skill files are non-empty and look like readable Markdown skill files;
-- blocked token, private-key, local-path, and unsupported-claim patterns are absent from public review files.
+- credential, private-key, and token markers are absent from review-facing files;
+- local-path and unsupported-claim patterns are surfaced as review warnings.
 
 GitHub Actions runs the same checks on pushes to `main` and pull requests.
 
