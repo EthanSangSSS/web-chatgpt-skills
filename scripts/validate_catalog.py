@@ -9,6 +9,7 @@ Python environment. It validates the conventions this repository depends on:
 - Each referenced skill path exists.
 - Each referenced skill file contains a visible skill title / content.
 - README and governance files required for public OSS review exist.
+- Maintenance-readiness documents and examples exist.
 - Deprecated upload-packages paths are rejected.
 """
 
@@ -26,8 +27,15 @@ REQUIRED_FILES = [
     "LICENSE",
     "CONTRIBUTING.md",
     "SECURITY.md",
+    "ROADMAP.md",
     "docs/CODEX_FOR_OSS_APPLICATION.md",
     "docs/MAINTAINER_RUNBOOK.md",
+    "docs/SECURITY_THREAT_MODEL.md",
+    "docs/RELEASE_CHECKLIST.md",
+    "scripts/check_public_safety.py",
+    "examples/github-reality-audit.md",
+    "examples/local-agent-handoff.md",
+    "examples/unsafe-claim-review.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
 ]
 NO_UPLOAD_PACKAGE_REFERENCES = [

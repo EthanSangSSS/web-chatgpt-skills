@@ -14,11 +14,16 @@ Start here if you are evaluating the project as an OSS repository or OpenAI Code
 
 - [`CATALOG.yaml`](CATALOG.yaml) — machine-readable skill registry and execution defaults.
 - [`docs/CODEX_FOR_OSS_APPLICATION.md`](docs/CODEX_FOR_OSS_APPLICATION.md) — evidence packet and application wording.
+- [`ROADMAP.md`](ROADMAP.md) — staged OSS maintenance plan.
+- [`docs/SECURITY_THREAT_MODEL.md`](docs/SECURITY_THREAT_MODEL.md) — instruction-level security model for AI-agent skills.
+- [`docs/RELEASE_CHECKLIST.md`](docs/RELEASE_CHECKLIST.md) — release-readiness checklist and `v0.1.0` candidate scope.
 - [`docs/MAINTAINER_RUNBOOK.md`](docs/MAINTAINER_RUNBOOK.md) — maintainer SOP for triage, review, validation, and local-agent handoff.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution rules and skill quality checklist.
 - [`SECURITY.md`](SECURITY.md) — security scope and reporting policy.
 - [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) — PR checklist for maintenance evidence and safety boundaries.
 - [`scripts/validate_catalog.py`](scripts/validate_catalog.py) — dependency-free catalog and public-review file validator.
+- [`scripts/check_public_safety.py`](scripts/check_public_safety.py) — dependency-free scan that blocks credential/private-key markers and reports local-path or unsupported-claim wording as review warnings.
+- [`examples/`](examples/) — public-safe examples for GitHub Reality Audit, bounded handoff, and unsafe-claim review.
 
 ## Why this exists
 
@@ -48,7 +53,9 @@ Every skill in this repository follows these defaults:
 ```text
 CATALOG.yaml                         Machine-readable skill registry
 <skill>/SKILL.md                     Canonical self-contained skill package entrypoint
-docs/                                Reviewer evidence, maintainer SOP, project documentation
+ROADMAP.md                           Staged OSS maintenance plan
+docs/                                Reviewer evidence, threat model, release checklist, maintainer SOP
+examples/                            Public-safe usage and review examples
 scripts/                             Lightweight validation scripts
 .github/workflows/                   CI validation
 .github/PULL_REQUEST_TEMPLATE.md     PR safety and maintenance checklist
@@ -99,29 +106,32 @@ Do not claim local execution or test pass without tool evidence.
 
 ## Validation
 
-Run the public-review validator:
+Run the public-review validators:
 
 ```bash
 python3 scripts/validate_catalog.py
+python3 scripts/check_public_safety.py
 ```
 
-The validator checks that:
+The validators check that:
 
-- required public-review files exist;
+- required public-review and maintenance-readiness files exist;
 - `CATALOG.yaml` declares this repository;
 - the unverified-execution evidence rule remains present;
 - each catalog skill has a unique id and a canonical `<skill>/SKILL.md` path;
 - deprecated package-layer paths are absent;
-- referenced skill files are non-empty and look like readable Markdown skill files.
+- referenced skill files are non-empty and look like readable Markdown skill files;
+- credential, private-key, and token markers are absent from review-facing files;
+- local-path and unsupported-claim patterns are surfaced as review warnings.
 
-GitHub Actions runs the same check on pushes to `main` and pull requests.
+GitHub Actions runs the same checks on pushes to `main` and pull requests.
 
 ## OpenAI Codex for OSS fit
 
 This is an early-stage public project. It should not be evaluated on unverified stars, downloads, or external adoption claims. Its application case is based on:
 
 - ecosystem importance: reusable public rules for safer AI-agent maintenance;
-- active maintenance evidence: catalog updates, PR checklist, governance files, validation script, CI workflow, and maintainer runbook;
+- active maintenance evidence: catalog updates, PR checklist, governance files, validation scripts, CI workflow, maintainer runbook, roadmap, threat model, release checklist, and public-safe examples;
 - Codex fit: PR review, issue triage, catalog validation, release-readiness checks, and skill safety review are exactly the type of recurring OSS maintainer work Codex can reduce.
 
 See [`docs/CODEX_FOR_OSS_APPLICATION.md`](docs/CODEX_FOR_OSS_APPLICATION.md) for the application evidence packet and 500-character form drafts.
@@ -132,7 +142,7 @@ Contributions are welcome when they improve skill correctness, safety, validatio
 
 ## Security
 
-Do not disclose secrets or private data in issues or pull requests. See [`SECURITY.md`](SECURITY.md).
+Do not disclose secrets or private data in issues or pull requests. See [`SECURITY.md`](SECURITY.md) and [`docs/SECURITY_THREAT_MODEL.md`](docs/SECURITY_THREAT_MODEL.md).
 
 ## License
 
