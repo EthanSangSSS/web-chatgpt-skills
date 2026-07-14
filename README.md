@@ -1,36 +1,59 @@
 # Web ChatGPT Skills
 
-Web ChatGPT-oriented skills. Some packages are single-file skills at:
+[![Catalog check](https://github.com/EthanSangSSS/web-chatgpt-skills/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/EthanSangSSS/web-chatgpt-skills/actions/workflows/catalog-check.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Scope](https://img.shields.io/badge/scope-Web%20ChatGPT%20%7C%20Codex%20%7C%20local%20agents-blue)](CATALOG.yaml)
 
-```text
-<skill>/SKILL.md
-```
+`web-chatgpt-skills` is a public, remote-readable skill registry for Web ChatGPT, Codex, and local-agent workflows.
 
-Complete portable packages live under:
+The repository packages reusable skills that make AI-assisted work safer and more repeatable: each skill should define when to use it, when not to use it, what evidence it may rely on, what output it should produce, and when it must stop and hand work to a local agent instead of pretending it executed locally.
 
-```text
-upload-packages/<skill>/
-```
+## Reviewer fast path
 
-Upload `SKILL.md` to ChatGPT when using the Web ChatGPT single-file skill surface. For Codex or local-agent usage, sync the full package directory so its references, templates, tests, examples, metadata, and validation assets remain available.
+Start here if you are evaluating the project as an OSS repository or OpenAI Codex for Open Source candidate:
 
-Use this repository as a **remote-readable skill registry** for Web ChatGPT. The canonical machine-readable entrypoint is:
+- [`CATALOG.yaml`](CATALOG.yaml) — machine-readable skill registry and execution defaults.
+- [`docs/CODEX_FOR_OSS_APPLICATION.md`](docs/CODEX_FOR_OSS_APPLICATION.md) — evidence packet and application wording.
+- [`docs/MAINTAINER_RUNBOOK.md`](docs/MAINTAINER_RUNBOOK.md) — maintainer SOP for triage, review, validation, and local-agent handoff.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution rules and skill quality checklist.
+- [`SECURITY.md`](SECURITY.md) — security scope and reporting policy.
+- [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) — PR checklist for maintenance evidence and safety boundaries.
+- [`scripts/validate_catalog.py`](scripts/validate_catalog.py) — dependency-free catalog and public-review file validator.
 
-```text
-CATALOG.yaml
-```
+## Why this exists
 
-A Web ChatGPT run should first read `CATALOG.yaml`, select the most relevant skill, then read the selected `SKILL.md`. These packages are designed for conversations, uploaded material, GitHub connector data, and optional web search. They do **not** assume a local terminal, local filesystem, MCP server, credentials, or background agent.
+AI coding agents can reduce maintenance load, but unmanaged workflows often create new review risks:
 
-## Remote execution contract
+- stale or oversized context;
+- hidden assumptions about local files, shell state, credentials, or background work;
+- false claims that tests, builds, or security checks ran;
+- unsafe tool instructions;
+- leaked local paths, private logs, private source, or secrets;
+- handoffs that cannot be reproduced by another maintainer.
+
+This repository turns those recurring risks into public, inspectable skill packages and operating rules.
+
+## Core contract
 
 Every skill in this repository follows these defaults:
 
-- ChatGPT may reason from the conversation, uploaded files, GitHub connector data, and web search when available.
-- ChatGPT must not claim it ran commands, tests, local builds, local scripts, or background checks unless a tool call actually produced that evidence.
-- ChatGPT must not request or store secrets, tokens, credentials, private keys, or private source dumps.
-- If the task requires local edits, shell commands, build/test execution, local services, credentials, or multi-file repository changes beyond safe GitHub connector edits, ChatGPT must produce a bounded local-agent handoff instead of pretending to execute locally.
+- Web ChatGPT may reason from the conversation, uploaded files, GitHub connector data, and web search when available.
+- A skill must not claim it ran commands, tests, local builds, local scripts, or background checks unless a tool call or command output actually produced that evidence.
+- A skill must not request or store secrets, tokens, credentials, private keys, private source dumps, browser data, or private logs.
+- If a task requires local edits, shell commands, build/test execution, local services, credentials, or multi-file repository changes beyond safe GitHub connector edits, the assistant should produce a bounded local-agent handoff.
 - Human review remains required before production use of generated diagrams, tests, code plans, visual assets, security conclusions, and quality gates.
+
+## Repository layout
+
+```text
+CATALOG.yaml                         Machine-readable skill registry
+<skill>/SKILL.md                     Single-file Web ChatGPT skills
+upload-packages/<skill>/             Complete portable packages for Codex/local agents
+docs/                                Reviewer evidence, maintainer SOP, project documentation
+scripts/                             Lightweight validation scripts
+.github/workflows/                   CI validation
+.github/PULL_REQUEST_TEMPLATE.md     PR safety and maintenance checklist
+```
 
 ## Recommended invocation
 
@@ -41,19 +64,21 @@ Apply the skill's execution boundary, output contract, validation gate, and loca
 Do not claim local execution or test pass without tool evidence.
 ```
 
-## Software and architecture
+## Available skills
+
+### Software and architecture
 
 - `architecture-diagram` — creates readable SVG, HTML, Mermaid, C4-style, deployment, data-flow, or trust-boundary diagrams.
 - `systematic-debugging` — evidence-led debugging with symptom ledgers, competing hypotheses, discriminating tests, and handoff rules.
 - `test-driven-development` — test design and RED-GREEN-REFACTOR with user-supplied test evidence.
 
-## Product, planning, and project management
+### Product, planning, and project management
 
 - `requirement-engineering` — turns ambiguity into testable requirements with explicit acceptance evidence.
 - `kanban-orchestrator` — decomposes an outcome into dependency-aware work packages, validation gates, and local-agent handoff cards.
 - `grill-me` — adversarially stress-tests plans, specs, tickets, handoffs, and decisions with ambiguity scoring before execution.
 
-## Research and perspective modeling
+### Research and perspective modeling
 
 - `customer-research` — synthesizes interviews, feedback, reviews, and web evidence into decision-ready insight.
 - `research-paper-writing` — plans and reviews technical research manuscripts without fabricating claims, results, or citations.
@@ -61,18 +86,54 @@ Do not claim local execution or test pass without tool evidence.
 - `truth-seeking` — evidence-constrained causal investigation, source policy, observation integrity, and adversarial validation fixtures.
 - `rational-product-evaluation` — consumer purchase evaluation by fit, timing, evidence quality, alternatives, and TCO.
 
-## Visual and creative design
+### Visual and creative design
 
 - `baoyu-article-illustrator` — plans article visuals and image prompts with accessibility and IP boundaries.
 - `baoyu-comic` — creates educational comic storyboards with source boundaries and panel-level prompts.
 - `baoyu-infographic` — creates evidence-aware infographic specifications with data-audit and misleading-chart checks.
 
-## Writing, safety, and quality
+### Writing, safety, and quality
 
 - `content-polishing-workflow` — improves clarity, voice, structure, and evidence fidelity while preserving factual boundaries.
 - `skill-vetter` — security-first review for skills and workflows, including permissions, red flags, and adoption verdicts.
 - `industrial-self-audit-protocol` — evidence-based final quality gate using PASS / PASS_WITH_WARNINGS / INCONCLUSIVE / FAIL / BLOCKED.
 
-## Repository status
+## Validation
 
-These are portable adaptations of local workflows for Web ChatGPT. They intentionally favor explicit evidence, bounded assumptions, user-visible uncertainty, and safe escalation over autonomous execution.
+Run the public-review validator:
+
+```bash
+python3 scripts/validate_catalog.py
+```
+
+The validator checks that:
+
+- required public-review files exist;
+- `CATALOG.yaml` declares this repository;
+- the unverified-execution evidence rule remains present;
+- each catalog skill has a unique id and an existing `SKILL.md` path;
+- referenced skill files are non-empty and look like readable Markdown skill files.
+
+GitHub Actions runs the same check on pushes to `main` and pull requests.
+
+## OpenAI Codex for OSS fit
+
+This is an early-stage public project. It should not be evaluated on unverified stars, downloads, or external adoption claims. Its application case is based on:
+
+- ecosystem importance: reusable public rules for safer AI-agent maintenance;
+- active maintenance evidence: catalog updates, PR checklist, governance files, validation script, CI workflow, and maintainer runbook;
+- Codex fit: PR review, issue triage, catalog validation, release-readiness checks, and skill safety review are exactly the type of recurring OSS maintainer work Codex can reduce.
+
+See [`docs/CODEX_FOR_OSS_APPLICATION.md`](docs/CODEX_FOR_OSS_APPLICATION.md) for the application evidence packet and 500-character form drafts.
+
+## Contributing
+
+Contributions are welcome when they improve skill correctness, safety, validation, documentation, or reusability. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## Security
+
+Do not disclose secrets or private data in issues or pull requests. See [`SECURITY.md`](SECURITY.md).
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
