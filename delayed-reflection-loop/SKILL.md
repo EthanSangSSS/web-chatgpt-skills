@@ -108,6 +108,7 @@ Rules:
 - Weekly and monthly period markers prevent duplicate synthesis generation.
 - Durable files and current blob SHAs outrank conversational memory.
 - If durable state is absent, unreadable, stale, or contradictory, fall back to manual confirmation and do not claim that an item is due.
+- Manual fallback still allows the user to request and confirm a new D0; it does not authorize automatic review scheduling or automatic writes.
 - Do not silently reconstruct permission state from previous chat wording.
 
 ## Dedicated-conversation boundary
