@@ -31,5 +31,8 @@ jobs:
       - name: Run unsafe-claim regression fixtures
         run: python3 scripts/check_unsafe_claims.py
 
+      - name: Validate delayed reflection contract fixtures
+        run: python3 scripts/check_delayed_reflection_contract.py
+
       - name: List changed skill entrypoints for reviewer attention
         run: python3 scripts/list_changed_skills.py
