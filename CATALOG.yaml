@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-07-14"
+updated_at: "2026-07-17"
 repository: EthanSangSSS/web-chatgpt-skills
 purpose: >-
   Machine-readable registry for Web ChatGPT-oriented skills. Every package is
@@ -82,6 +82,14 @@ skills:
     category: adversarial-review
     triggers: [grill me, stress test, poke holes, red team, adversarial review, am I missing anything, 反方审查, 拷问方案, 压力测试, 挑刺]
     do_not_use_for: [performing the task being discussed, code execution, debugging reproduction, final certification without evidence, hostile personal criticism]
+
+  - id: delayed-reflection-loop
+    path: delayed-reflection-loop/SKILL.md
+    status: beta
+    priority: P1
+    category: personal-development
+    triggers: [delayed reflection, daily reflection, next-day review, journal workflow, diary workflow, growth log, 每日日记, 次日复盘, 延迟复盘, 成长记录]
+    do_not_use_for: [immediate safety response, therapy or diagnosis, raw chat archiving, background surveillance, storing secrets]
 
   - id: customer-research
     path: customer-research/SKILL.md
