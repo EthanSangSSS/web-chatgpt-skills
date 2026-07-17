@@ -89,6 +89,7 @@ Do not claim local execution or test pass without tool evidence.
 - `requirement-engineering` — turns ambiguity into testable requirements with explicit acceptance evidence.
 - `kanban-orchestrator` — decomposes an outcome into dependency-aware work packages, validation gates, and local-agent handoff cards.
 - `grill-me` — adversarially stress-tests plans, specs, tickets, handoffs, and decisions with ambiguity scoring before execution.
+- `delayed-reflection-loop` — runs a privacy-first daily capture, delayed review, minimal-action loop, and sample-gated weekly or monthly synthesis.
 
 ### Research and perspective modeling
 
