@@ -26,9 +26,11 @@ Start here if you are evaluating the project as an OSS repository or OpenAI Code
 - [`scripts/validate_catalog.py`](scripts/validate_catalog.py) — dependency-free catalog and public-review file validator.
 - [`scripts/check_public_safety.py`](scripts/check_public_safety.py) — dependency-free scan that blocks credential/private-key markers and reports local-path or unsupported-claim wording as review warnings.
 - [`scripts/check_unsafe_claims.py`](scripts/check_unsafe_claims.py) — regression check for unsupported execution and validation claims.
+- [`scripts/check_delayed_reflection_contract.py`](scripts/check_delayed_reflection_contract.py) — deterministic authorization, state, privacy, idempotency, and crisis-stop checks for the delayed-reflection workflow.
 - [`scripts/list_changed_skills.py`](scripts/list_changed_skills.py) — reviewer aid that lists changed skill entrypoints.
 - [`examples/`](examples/) — public-safe examples for GitHub Reality Audit, bounded handoff, unsafe-claim review, architecture diagrams, TDD, and systematic debugging.
 - [`tests/fixtures/unsafe-claims/`](tests/fixtures/unsafe-claims/) — PASS / FAIL fixtures for validation-claim discipline.
+- [`tests/fixtures/delayed-reflection-loop/`](tests/fixtures/delayed-reflection-loop/) — deterministic workflow-contract fixtures for state and write gating.
 
 ## Why this exists
 
@@ -62,7 +64,7 @@ ROADMAP.md                           Staged OSS maintenance plan
 docs/                                Reviewer evidence, threat model, release checklist, maintainer SOP
 examples/                            Public-safe usage and review examples
 scripts/                             Lightweight validation scripts
-tests/fixtures/unsafe-claims/        Validation-claim regression fixtures
+tests/fixtures/                      Regression and deterministic skill-contract fixtures
 .github/workflows/                   CI validation
 .github/PULL_REQUEST_TEMPLATE.md     PR safety and maintenance checklist
 ```
@@ -89,6 +91,7 @@ Do not claim local execution or test pass without tool evidence.
 - `requirement-engineering` — turns ambiguity into testable requirements with explicit acceptance evidence.
 - `kanban-orchestrator` — decomposes an outcome into dependency-aware work packages, validation gates, and local-agent handoff cards.
 - `grill-me` — adversarially stress-tests plans, specs, tickets, handoffs, and decisions with ambiguity scoring before execution.
+- `delayed-reflection-loop` — runs a privacy-first daily capture, delayed review, minimal-action loop, and sample-gated weekly or monthly synthesis.
 
 ### Research and perspective modeling
 
@@ -118,6 +121,7 @@ Run the public-review validators:
 python3 scripts/validate_catalog.py
 python3 scripts/check_public_safety.py
 python3 scripts/check_unsafe_claims.py
+python3 scripts/check_delayed_reflection_contract.py
 python3 scripts/list_changed_skills.py
 ```
 
@@ -132,6 +136,7 @@ The validators check that:
 - credential, private-key, and token markers are absent from review-facing files;
 - local-path and unsupported-claim patterns are surfaced as review warnings;
 - unsafe execution and validation claim fixtures behave as expected;
+- delayed-reflection authorization, state, privacy, idempotency, and safety fixtures behave as expected;
 - changed skill entrypoints are listed for reviewer attention.
 
 GitHub Actions runs the same checks on pushes to `main` and pull requests.
