@@ -33,7 +33,7 @@ REQUIRED_SKILL_MARKERS = [
     "privacy: no_identifiers | anonymized | user_approved_identifiers",
     "weekly/YYYY/YYYY-Www.md",
     "monthly/YYYY/YYYY-MM.md",
-    "valid recorded day",
+    "## Valid recorded day",
     "tests/fixtures/delayed-reflection-loop/cases.json",
 ]
 
