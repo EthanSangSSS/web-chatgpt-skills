@@ -1,0 +1,220 @@
+[
+  {
+    "name": "manual current draft may persist",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "manual",
+      "artifact_type": "daily",
+      "explicit_confirmation": true,
+      "draft_id": "2026-07-18-d0-r1",
+      "current_draft_id": "2026-07-18-d0-r1",
+      "char_count": 240,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "ALLOW"
+  },
+  {
+    "name": "stale confirmation cannot authorize revised draft",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "manual",
+      "artifact_type": "daily",
+      "explicit_confirmation": true,
+      "draft_id": "2026-07-18-d0-r1",
+      "current_draft_id": "2026-07-18-d0-r2",
+      "char_count": 220,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "DENY"
+  },
+  {
+    "name": "body over hard limit is denied",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "automatic",
+      "automatic_enabled": true,
+      "artifact_type": "daily",
+      "char_count": 301,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "DENY"
+  },
+  {
+    "name": "pending entry cannot contain review metadata",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "automatic",
+      "automatic_enabled": true,
+      "artifact_type": "daily",
+      "char_count": 180,
+      "status": "pending_review",
+      "review_metadata_present": true,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "DENY"
+  },
+  {
+    "name": "retrospective entry requires same-session review",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "manual",
+      "artifact_type": "daily",
+      "explicit_confirmation": true,
+      "draft_id": "2026-07-17-retro-r1",
+      "current_draft_id": "2026-07-17-retro-r1",
+      "char_count": 260,
+      "status": "reviewed",
+      "review_metadata_present": true,
+      "entry_mode": "retrospective",
+      "review_mode": "delayed",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "DENY"
+  },
+  {
+    "name": "approved identifiers are a valid privacy state",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "manual",
+      "artifact_type": "daily",
+      "explicit_confirmation": true,
+      "draft_id": "2026-07-18-d0-r1",
+      "current_draft_id": "2026-07-18-d0-r1",
+      "char_count": 190,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "user_approved_identifiers",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "ALLOW"
+  },
+  {
+    "name": "review append cannot modify D0",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "automatic",
+      "automatic_enabled": true,
+      "artifact_type": "review",
+      "operation": "update_review",
+      "d0_unchanged": false,
+      "char_count": 280,
+      "status": "reviewed",
+      "review_metadata_present": true,
+      "entry_mode": "current",
+      "review_mode": "d1",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "DENY"
+  },
+  {
+    "name": "conflicting existing path stops overwrite",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "automatic",
+      "automatic_enabled": true,
+      "artifact_type": "daily",
+      "char_count": 200,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": true,
+      "identical_content": false,
+      "crisis": false
+    },
+    "expected": "STOP"
+  },
+  {
+    "name": "identical existing content is a no-op",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "automatic",
+      "automatic_enabled": true,
+      "artifact_type": "daily",
+      "char_count": 200,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": true,
+      "identical_content": true,
+      "crisis": false
+    },
+    "expected": "NO_OP"
+  },
+  {
+    "name": "missing durable state falls back to manual",
+    "input": {
+      "durable_state": false,
+      "permission_mode": "automatic",
+      "automatic_enabled": true,
+      "artifact_type": "daily",
+      "char_count": 180,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "MANUAL_ONLY"
+  },
+  {
+    "name": "weekly synthesis always needs explicit confirmation",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "automatic",
+      "automatic_enabled": true,
+      "artifact_type": "weekly",
+      "explicit_confirmation": false,
+      "char_count": 0,
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": false
+    },
+    "expected": "DENY"
+  },
+  {
+    "name": "urgent safety condition stops persistence",
+    "input": {
+      "durable_state": true,
+      "permission_mode": "manual",
+      "artifact_type": "daily",
+      "explicit_confirmation": true,
+      "draft_id": "2026-07-18-d0-r1",
+      "current_draft_id": "2026-07-18-d0-r1",
+      "char_count": 120,
+      "status": "pending_review",
+      "review_metadata_present": false,
+      "entry_mode": "current",
+      "privacy": "anonymized",
+      "path_exists": false,
+      "crisis": true
+    },
+    "expected": "STOP"
+  }
+]
