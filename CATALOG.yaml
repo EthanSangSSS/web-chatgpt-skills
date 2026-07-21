@@ -91,6 +91,14 @@ skills:
     triggers: [delayed reflection, daily reflection, next-day review, journal workflow, diary workflow, growth log, 每日日记, 次日复盘, 延迟复盘, 成长记录]
     do_not_use_for: [immediate safety response, therapy or diagnosis, raw chat archiving, background surveillance, storing secrets]
 
+  - id: call-off-cost-breakdown-excel
+    path: call-off-cost-breakdown-excel/SKILL.md
+    status: beta
+    priority: P1
+    category: spreadsheet-automation
+    triggers: [call-off cost breakdown, call off template, quotation template, dependent dropdown Excel, cascading dropdown, Target Price template, pixel-level Excel replication, Excel data validation, 报价模板, 成本拆分模板, 三级联动下拉, Excel 像素级复刻, call off 模板]
+    do_not_use_for: [inventing source fields or prices that are absent, general financial modelling without a source workbook, accounting certification or tax advice, flattening a workbook to CSV, claiming native Excel interaction without evidence, unrelated spreadsheet cleanup]
+
   - id: customer-research
     path: customer-research/SKILL.md
     status: stable
