@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-07-17"
+updated_at: "2026-07-21"
 repository: EthanSangSSS/web-chatgpt-skills
 purpose: >-
   Machine-readable registry for Web ChatGPT-oriented skills. Every package is
@@ -98,6 +98,22 @@ skills:
     category: research
     triggers: [customer research, interviews, reviews, user feedback, JTBD, 用户研究, 客户反馈, 访谈]
     do_not_use_for: [inventing personas without evidence, regulated advice]
+
+  - id: unified-stock-data-web
+    path: unified-stock-data-web/SKILL.md
+    status: beta
+    priority: P1
+    category: market-research
+    triggers: [stock data, market data, stock quote, K-line, financial statements, SEC filing, HKEX announcement, A-share data, US stock data, Hong Kong stock data, 股票数据, 行情, K线, 财报, 公告, 资金流, 美股, 港股, A股]
+    do_not_use_for: [generic finance concepts without a data request, brokerage access, real-money trading, personalized investment advice, unverified bulk extraction]
+
+  - id: vibe-trading-web
+    path: vibe-trading-web/SKILL.md
+    status: beta
+    priority: P1
+    category: quantitative-research
+    triggers: [Vibe-Trading, vibe trading, trading agent, backtest review, Shadow Account, Vibe-Trading MCP, Vibe-Trading setup, Vibe-Trading audit, 交易智能体, 回测审核, 量化策略, 模拟交易, 本地交易 Agent]
+    do_not_use_for: [autonomous live trading, brokerage credentials, unverified local execution, background scheduler operation, personalized buy or sell instructions]
 
   - id: research-paper-writing
     path: research-paper-writing/SKILL.md

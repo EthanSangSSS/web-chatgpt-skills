@@ -101,6 +101,11 @@ Do not claim local execution or test pass without tool evidence.
 - `truth-seeking` — evidence-constrained causal investigation, source policy, observation integrity, and adversarial validation fixtures.
 - `rational-product-evaluation` — consumer purchase evaluation by fit, timing, evidence quality, alternatives, and TCO.
 
+### Market data and quantitative research
+
+- `unified-stock-data-web` — retrieves and normalizes current public-market evidence across A-shares, US equities, and Hong Kong equities within Web ChatGPT's verified tool boundary.
+- `vibe-trading-web` — audits and plans Vibe-Trading workflows, reviews uploaded backtest artifacts, and produces bounded local-agent handoffs without pretending to run the local runtime.
+
 ### Visual and creative design
 
 - `baoyu-article-illustrator` — plans article visuals and image prompts with accessibility and IP boundaries.
