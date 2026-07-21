@@ -93,6 +93,10 @@ Do not claim local execution or test pass without tool evidence.
 - `grill-me` — adversarially stress-tests plans, specs, tickets, handoffs, and decisions with ambiguity scoring before execution.
 - `delayed-reflection-loop` — runs a privacy-first daily capture, delayed review, minimal-action loop, and sample-gated weekly or monthly synthesis.
 
+### Spreadsheet and business operations
+
+- `call-off-cost-breakdown-excel` — converts a structured price workbook into a visually faithful call-off and quotation template with three-level dependent dropdowns, formula-driven pricing, source-sheet preservation, and strict no-invention rules for absent fields.
+
 ### Research and perspective modeling
 
 - `customer-research` — synthesizes interviews, feedback, reviews, and web evidence into decision-ready insight.
