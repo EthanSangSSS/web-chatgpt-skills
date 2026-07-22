@@ -112,6 +112,7 @@ Do not claim local execution or test pass without tool evidence.
 
 ### Visual and creative design
 
+- `cultural-aesthetic-design` — builds evidence-calibrated aesthetic direction from target-group cultural consensus, utility, brand meaning, embodied experience, accessibility, and falsifiable validation.
 - `baoyu-article-illustrator` — plans article visuals and image prompts with accessibility and IP boundaries.
 - `baoyu-comic` — creates educational comic storyboards with source boundaries and panel-level prompts.
 - `baoyu-infographic` — creates evidence-aware infographic specifications with data-audit and misleading-chart checks.
