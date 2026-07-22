@@ -27,10 +27,12 @@ Start here if you are evaluating the project as an OSS repository or OpenAI Code
 - [`scripts/check_public_safety.py`](scripts/check_public_safety.py) — dependency-free scan that blocks credential/private-key markers and reports local-path or unsupported-claim wording as review warnings.
 - [`scripts/check_unsafe_claims.py`](scripts/check_unsafe_claims.py) — regression check for unsupported execution and validation claims.
 - [`scripts/check_delayed_reflection_contract.py`](scripts/check_delayed_reflection_contract.py) — deterministic authorization, state, privacy, idempotency, and crisis-stop checks for the delayed-reflection workflow.
+- [`scripts/check_grill_me_exit_contract.py`](scripts/check_grill_me_exit_contract.py) — deterministic question-budget, convergence, stable-policy, user-fatigue, and dual-gate checks for `grill-me`.
 - [`scripts/list_changed_skills.py`](scripts/list_changed_skills.py) — reviewer aid that lists changed skill entrypoints.
 - [`examples/`](examples/) — public-safe examples for GitHub Reality Audit, bounded handoff, unsafe-claim review, architecture diagrams, TDD, and systematic debugging.
 - [`tests/fixtures/unsafe-claims/`](tests/fixtures/unsafe-claims/) — PASS / FAIL fixtures for validation-claim discipline.
 - [`tests/fixtures/delayed-reflection-loop/`](tests/fixtures/delayed-reflection-loop/) — deterministic workflow-contract fixtures for state and write gating.
+- [`tests/fixtures/grill-me-exit/`](tests/fixtures/grill-me-exit/) — deterministic fixtures proving that conversation exit is bounded and independent from artifact readiness.
 
 ## Why this exists
 
@@ -90,7 +92,7 @@ Do not claim local execution or test pass without tool evidence.
 
 - `requirement-engineering` — turns ambiguity into testable requirements with explicit acceptance evidence.
 - `kanban-orchestrator` — decomposes an outcome into dependency-aware work packages, validation gates, and local-agent handoff cards.
-- `grill-me` — adversarially stress-tests plans, specs, tickets, handoffs, and decisions with ambiguity scoring before execution.
+- `grill-me` — adversarially stress-tests plans, specs, tickets, handoffs, and decisions with ambiguity scoring, bounded question budgets, convergence checkpoints, and independent conversation/readiness gates.
 - `delayed-reflection-loop` — runs a privacy-first daily capture, delayed review, minimal-action loop, and sample-gated weekly or monthly synthesis.
 
 ### Spreadsheet and business operations
@@ -132,6 +134,7 @@ python3 scripts/validate_catalog.py
 python3 scripts/check_public_safety.py
 python3 scripts/check_unsafe_claims.py
 python3 scripts/check_delayed_reflection_contract.py
+python3 scripts/check_grill_me_exit_contract.py
 python3 scripts/list_changed_skills.py
 ```
 
@@ -147,6 +150,7 @@ The validators check that:
 - local-path and unsupported-claim patterns are surfaced as review warnings;
 - unsafe execution and validation claim fixtures behave as expected;
 - delayed-reflection authorization, state, privacy, idempotency, and safety fixtures behave as expected;
+- grill-me question budgets, convergence, stable-policy reuse, P0 stops, and exit/readiness separation behave as expected;
 - changed skill entrypoints are listed for reviewer attention.
 
 GitHub Actions runs the same checks on pushes to `main` and pull requests.
