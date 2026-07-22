@@ -1,6 +1,6 @@
 ---
 name: grill-me
-version: "0.2.0"
+version: "0.2.1"
 status: stable
 description: Web ChatGPT adversarial interview skill for stress-testing plans, specs, tickets, product decisions, architecture proposals, career choices, and handoff prompts before execution, with bounded questioning and explicit convergence gates.
 triggers:
@@ -79,12 +79,12 @@ Choose one mode from context. The readiness threshold controls the artifact verd
 
 | Mode | Use when | Readiness threshold | Default budget | Hard limit |
 |---|---|---:|---:|---:|
-| `freeform` | Idea, strategy, product concept, career or business decision | 0.40 | 3 | 5 |
-| `spec` | PRD, architecture, contract scope, implementation design | 0.20 | 4 | 7 |
-| `ticket` | One bounded GitHub/Linear/Jira item or Codex goal | 0.30 | 2 | 4 |
-| `handoff` | Local-agent, Codex, or Claude Code prompt | 0.20 | 4 | 7 |
-| `review` | One-pass red-team review of an existing artifact | 0.30 | 0 | 2 |
-| `deep-grill` | Explicitly requested exhaustive, branch-by-branch interrogation | 0.20 | 8 | 12 |
+| `freeform` | Idea, strategy, product concept, career or business decision | 0.40 | 3 | 20 |
+| `spec` | PRD, architecture, contract scope, implementation design | 0.20 | 4 | 20 |
+| `ticket` | One bounded GitHub/Linear/Jira item or Codex goal | 0.30 | 2 | 20 |
+| `handoff` | Local-agent, Codex, or Claude Code prompt | 0.20 | 4 | 20 |
+| `review` | One-pass red-team review of an existing artifact | 0.30 | 0 | 20 |
+| `deep-grill` | Explicitly requested exhaustive, branch-by-branch interrogation | 0.20 | 8 | 20 |
 
 Rules:
 
