@@ -1,0 +1,286 @@
+schema_version: "1.0"
+record_type: cultural_aesthetic_design_decision
+
+project:
+  project_id: unknown
+  title: unknown
+  domain: unknown
+  lifecycle_stage: unknown
+  geography: []
+  decision_owner: unknown
+  generated_at: unknown
+  execution_mode: unknown
+  research_depth: unknown
+  status: draft
+
+intake:
+  decision_question: unknown
+  deliverable: unknown
+  target_segments: []
+  public_or_private_use: unknown
+  core_tasks: []
+  failure_consequences: []
+  brand_worldview: []
+  requested_style_terms: []
+  constraints: []
+  budget_and_reversibility: unknown
+  body_profiles: []
+  available_evidence: []
+  missing_inputs: []
+
+perceptual_intent:
+  primary: []
+  secondary: []
+  forbidden: []
+  embodied:
+    approach: unknown
+    reach_and_access: unknown
+    touch_and_grip: unknown
+    operation: unknown
+    movement: unknown
+    waiting_and_feedback: unknown
+    maintenance_and_cleaning: unknown
+    long_term_use: unknown
+
+evidence:
+  level: L0
+  freshness_status: unknown
+  ledger_refs: []
+  evidence_types_present: []
+  main_support: []
+  conflicts: []
+  confounders: []
+  counterevidence: []
+  missing_evidence: []
+  confidence: unknown
+
+cultural_consensus:
+  signals: []
+  authority_records: []
+  behavioral_support: []
+  cultural_text_support: []
+  identity_constraints: []
+  diffusion_state: unknown
+  saturation_risk: unknown
+  authority_exit_risk: unknown
+  power_harm_verdict: unknown
+  cultural_permission_verdict: unknown
+
+scientific_priors:
+  records: []
+  external_validity_limits: []
+  unsupported_universal_claims: []
+
+risk_routing:
+  irreversibility: unknown
+  safety_and_bodily_consequence: unknown
+  accessibility_and_dignity_consequence: unknown
+  financial_or_manufacturing_exposure: unknown
+  cultural_distance: unknown
+  brand_exposure: unknown
+  evidence_uncertainty: unknown
+  user_vulnerability: unknown
+  manipulation_risk: unknown
+  execution_state: RESEARCH_ONLY
+  escalation_reason: unknown
+
+module_calls: []
+
+# Example module call:
+# - module: customer-research
+#   purpose: identify behavioral evidence and segment conflict
+#   input_scope: unknown
+#   expected_output: evidence inventory
+#   authority_limit: cannot select or certify the final design
+#   fallback: core evidence inventory
+
+design_grammar:
+  hierarchy: unknown
+  geometry: unknown
+  proportion: unknown
+  density: unknown
+  rhythm: unknown
+  contrast: unknown
+  material_or_surface: unknown
+  typography_or_labeling: unknown
+  interaction_or_mechanism: unknown
+  visibility_of_structure: unknown
+  accessibility_affordances: unknown
+  aging_and_wear: unknown
+  controlled_deviation: unknown
+  forbidden_combinations: []
+
+candidates:
+  - id: A
+    strategy: consensus_stable
+    maturity: candidate
+    summary: unknown
+    design_grammar: {}
+    intended_perceptions: []
+    expected_value:
+      functional: unknown
+      emotional: unknown
+      symbolic: unknown
+      aesthetic: unknown
+      cultural: unknown
+      long_term: unknown
+    evidence_refs: []
+    utility_cost: unknown
+    accessibility_cost: unknown
+    cultural_risk: unknown
+    manipulation_risk: unknown
+    permission_risk: unknown
+    similarity_risk: unknown
+    maintenance_and_aging: unknown
+    confidence: unknown
+    counterexamples: []
+    validation: []
+    invalidation_conditions: []
+
+  - id: B
+    strategy: utility_enhanced
+    maturity: candidate
+    summary: unknown
+    design_grammar: {}
+    intended_perceptions: []
+    expected_value:
+      functional: unknown
+      emotional: unknown
+      symbolic: unknown
+      aesthetic: unknown
+      cultural: unknown
+      long_term: unknown
+    evidence_refs: []
+    utility_cost: unknown
+    accessibility_cost: unknown
+    cultural_risk: unknown
+    manipulation_risk: unknown
+    permission_risk: unknown
+    similarity_risk: unknown
+    maintenance_and_aging: unknown
+    confidence: unknown
+    counterexamples: []
+    validation: []
+    invalidation_conditions: []
+
+  - id: C
+    strategy: brand_expression
+    maturity: candidate
+    summary: unknown
+    design_grammar: {}
+    intended_perceptions: []
+    expected_value:
+      functional: unknown
+      emotional: unknown
+      symbolic: unknown
+      aesthetic: unknown
+      cultural: unknown
+      long_term: unknown
+    evidence_refs: []
+    utility_cost: unknown
+    accessibility_cost: unknown
+    cultural_risk: unknown
+    manipulation_risk: unknown
+    permission_risk: unknown
+    similarity_risk: unknown
+    maintenance_and_aging: unknown
+    confidence: unknown
+    counterexamples: []
+    validation: []
+    invalidation_conditions: []
+
+influence_audit:
+  intended_user_action: unknown
+  claim_verifiability: unknown
+  information_symmetry: unknown
+  option_visibility: unknown
+  refusal_and_exit_cost: unknown
+  identity_pressure: unknown
+  vulnerability_exploitation: unknown
+  delayed_costs: unknown
+  accessibility_impact: unknown
+  reversibility: unknown
+  verdict: unknown
+
+power_harm_audit:
+  legitimate_meaning: []
+  harmful_mechanism: []
+  transformable_elements: []
+  prohibited_elements: []
+  verdict: unknown
+
+cultural_permission:
+  assets: []
+  classification: unknown
+  permission_evidence: []
+  attribution_required: unknown
+  benefit_sharing: unknown
+  distortion_risk: unknown
+  community_harm_risk: unknown
+  verdict: unknown
+
+gates:
+  gate_0_hard_constraints:
+    safety: not_tested
+    legality_and_ethics: not_tested
+    accessibility_and_dignity: not_tested
+    factual_and_material_truth: not_tested
+    informed_autonomy: not_tested
+    reliability_and_maintainability: not_tested
+    core_task: not_tested
+    cultural_permission: not_tested
+    verdict: not_tested
+
+  gate_1_task_and_embodied_value:
+    status: not_tested
+    evidence: []
+    countermetrics: []
+
+  gate_2_perceptual_intent:
+    status: not_tested
+    evidence: []
+    forbidden_perception_incidents: []
+
+  gate_3_behavior:
+    status: not_tested
+    evidence: []
+    confounders: []
+
+  gate_4_long_term:
+    status: not_tested
+    evidence: []
+    aging_and_saturation_risks: []
+
+bias_controls:
+  blind_vs_branded: not_run
+  counterfactual_variants: not_run
+  realistic_context: not_run
+  longitudinal_exposure: not_run
+  segment_analysis: not_run
+  public_vs_private_choice: not_run
+  media_control: not_run
+  ai_review_separated_from_user_validation: true
+
+decision:
+  verdict: INCONCLUSIVE
+  selected_candidate: none
+  rationale: insufficient evidence
+  unresolved_tradeoffs: []
+  required_changes: []
+  residual_risks: []
+
+validation:
+  required_tests: []
+  counterfactuals: []
+  failure_conditions: []
+  expert_or_qualified_review_required: []
+  review_due_at: unknown
+
+role_handoffs: []
+
+versioning:
+  evidence_records_created: []
+  evidence_records_updated: []
+  supersedes: []
+  superseded_by: []
+  change_reason: initial_record
