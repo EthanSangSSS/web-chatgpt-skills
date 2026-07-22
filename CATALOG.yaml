@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-07-21"
+updated_at: "2026-07-22"
 repository: EthanSangSSS/web-chatgpt-skills
 purpose: >-
   Machine-readable registry for Web ChatGPT-oriented skills. Every package is
@@ -106,6 +106,14 @@ skills:
     category: research
     triggers: [customer research, interviews, reviews, user feedback, JTBD, 用户研究, 客户反馈, 访谈]
     do_not_use_for: [inventing personas without evidence, regulated advice]
+
+  - id: cultural-aesthetic-design
+    path: cultural-aesthetic-design/SKILL.md
+    status: beta
+    priority: P1
+    category: design-research
+    triggers: [aesthetic design, aesthetic strategy, cultural consensus design, design language, premium perception, evidence-based design, 审美设计, 审美策略, 文化共识, 设计语言, 高级感, 产品美学, UI 美学, 硬件外观, 无障碍美学]
+    do_not_use_for: [copying a living artist or identifiable contemporary designer style, treating dominant taste as universal truth, bypassing safety accessibility legality or informed autonomy, claiming user validation or scientific proof without evidence, decorative image generation with no product or decision context]
 
   - id: unified-stock-data-web
     path: unified-stock-data-web/SKILL.md
