@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-07-22"
+updated_at: "2026-07-24"
 repository: EthanSangSSS/web-chatgpt-skills
 purpose: >-
   Machine-readable registry for Web ChatGPT-oriented skills. Every package is
@@ -144,8 +144,8 @@ skills:
     status: stable
     priority: P1
     category: perspective-modeling
-    triggers: [nuwa, perspective skill, mental model, decision style, 思维方式, 名人的思维, 学派]
-    do_not_use_for: [deceptive impersonation, private motive claims, therapeutic replacement]
+    triggers: [nuwa, perspective skill, mental model, high-fidelity perspective, 思维方式, 名人思维, 学派, 书籍蒸馏]
+    do_not_use_for: [deceptive impersonation, private motive claims, protected style imitation, company style as a primary subject, generic decision-method synthesis, therapeutic replacement]
 
   - id: baoyu-article-illustrator
     path: baoyu-article-illustrator/SKILL.md

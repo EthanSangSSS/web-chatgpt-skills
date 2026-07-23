@@ -17,7 +17,7 @@ SKILL = ROOT / "grill-me" / "SKILL.md"
 FIXTURE_DIR = ROOT / "tests" / "fixtures" / "grill-me-exit"
 
 REQUIRED_SKILL_MARKERS = [
-    'version: "0.2.0"',
+    'version: "0.2.1"',
     "## Two independent gates",
     "### Gate A — Conversation Exit Gate",
     "### Gate B — Artifact Readiness Gate",
@@ -163,7 +163,7 @@ def main() -> int:
             print(f"- {failure}", file=sys.stderr)
         return 1
 
-    print(f"PASS: grill-me exit contract checked {fixture_count} fixtures and required v0.2.0 markers")
+    print(f"PASS: grill-me exit contract checked {fixture_count} fixtures and required v0.2.1 markers")
     return 0
 
 
